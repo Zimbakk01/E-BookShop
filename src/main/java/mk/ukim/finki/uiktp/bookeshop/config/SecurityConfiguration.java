@@ -33,14 +33,14 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
 
-                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
-
-
-                        .requestMatchers("/api/shopping-cart/**").authenticated()
-                        .requestMatchers("/api/users/**").hasRole("ADMIN")
-//                        .requestMatchers(HttpMethod.POST, "/api/auth/authenticate").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
+//
+//
+//                        .requestMatchers("/api/shopping-cart/**").authenticated()
+//                        .requestMatchers("/api/users/**").hasRole("ADMIN")
+////                        .requestMatchers(HttpMethod.POST, "/api/auth/authenticate").permitAll()
                         .anyRequest()
-                        .authenticated())
+                        .permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
