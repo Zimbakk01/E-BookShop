@@ -41,7 +41,7 @@ public class UserRestController {
     }
 
     @PutMapping("/edit/{username}")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> update(@PathVariable String username,
                                        @RequestBody UserDto userDto) {
         return this.userService.update(username, userDto)
@@ -50,7 +50,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/delete/{username}")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity delete(@PathVariable String username) {
         this.userService.delete(username);
         if (this.userService.findByUsername(username).isEmpty())

@@ -21,13 +21,13 @@ public class BookRestController {
     }
 
     @GetMapping
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     public List<Book> findAll() {
         return this.bookService.findAll();
     }
 
     @GetMapping("/isbn/{isbn}")
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Book> findBookByISBN(@PathVariable String isbn) {
         return this.bookService.findBookByISBN(isbn)
                 .map(book -> ResponseEntity.ok().body(book))
@@ -35,19 +35,19 @@ public class BookRestController {
     }
 
     @GetMapping("/genre/{genre}")
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     public List<Book> findBooksByGenre(@PathVariable Genre genre) {
         return this.bookService.findBooksByGenre(genre);
     }
 
     @GetMapping("/author/{authorId}")
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     public List<Book> findBooksByAuthor(@PathVariable Long authorId) {
         return this.bookService.findBooksByAuthor(authorId);
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Book> create(@RequestBody BookDto bookDto) {
         return this.bookService.create(bookDto)
                 .map(book -> ResponseEntity.ok().body(book))
@@ -55,7 +55,7 @@ public class BookRestController {
     }
 
     @PutMapping("/edit/{isbn}")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Book> update(@PathVariable String isbn,
                                        @RequestBody BookDto bookDto) {
         return this.bookService.update(isbn, bookDto)
@@ -64,7 +64,7 @@ public class BookRestController {
     }
 
     @DeleteMapping("/delete/{isbn}")
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteBookByIsbn(@PathVariable String isbn) {
         this.bookService.deleteBookByIsbn(isbn);
         if (this.bookService.findBookByISBN(isbn).isEmpty())
