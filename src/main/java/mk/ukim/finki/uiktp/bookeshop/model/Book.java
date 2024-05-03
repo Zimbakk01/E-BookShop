@@ -22,8 +22,8 @@ public class Book {
 
     private String price;
 
-    @Lob
-    private byte[] imageData;
+    private String imageData;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Author> authors;
@@ -31,7 +31,7 @@ public class Book {
     public Book(){
 
     }
-    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price,byte[] imageData, List<Author> authors) {
+    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price,String imageData, List<Author> authors) {
         this.isbn = isbn;
         this.title = title;
         this.publicationHouse = publicationHouse;

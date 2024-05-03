@@ -18,13 +18,13 @@ public class BookDto {
     private String publicationYear;
     private Genre genre;
     private String price;
-    private byte[] imageData;
+    private String imageData;
     private List<Author> authors;
 
     public BookDto() {
     }
 
-    public BookDto(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price, byte[] imageData, List<Author> authors) {
+    public BookDto(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price, String imageData, List<Author> authors) {
         this.isbn = isbn;
         this.title = title;
         this.publicationHouse = publicationHouse;
