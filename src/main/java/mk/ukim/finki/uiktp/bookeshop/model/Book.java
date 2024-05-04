@@ -26,7 +26,7 @@ public class Book {
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
-    private String price;
+    private float price;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
@@ -40,7 +40,7 @@ public class Book {
     public Book(){
 
     }
-    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price,byte[] imageData, Author authors) {
+    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, float price,byte[] imageData, Author authors) {
         this.isbn = isbn;
         this.title = title;
         this.publicationHouse = publicationHouse;

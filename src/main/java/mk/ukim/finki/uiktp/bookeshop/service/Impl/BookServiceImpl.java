@@ -11,6 +11,7 @@ import mk.ukim.finki.uiktp.bookeshop.repository.BookRepository;
 import mk.ukim.finki.uiktp.bookeshop.service.BookService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +43,15 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findBooksByGenre(genre);
     }
 
+    @Override
+    public List<Book> findBooksByAuthor(Author author) {
+        return bookRepository.findBooksByAuthor(author);
+    }
+    @Override
+    public List<Book> findBooksByPriceBetween(float minPrice, float maxPrice){
+        return bookRepository.findBooksByPriceBetween(minPrice, maxPrice);
+
+    }
     @Override
     public List<Book> findBooksByAuthor(Long authorId) {
         return bookRepository.findBooksByAuthorId(authorId);

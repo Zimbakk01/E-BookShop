@@ -20,14 +20,14 @@ public class BookDto {
     private String publicationHouse;
     private String publicationYear;
     private String genre;
-    private String price;
+    private float price;
     private String imageData;
     private Long authorID;
 
     public BookDto() {
     }
 
-    public BookDto(String isbn, String title, String publicationHouse, String publicationYear, String genre, String price, String imageData, Long authorID) {
+    public BookDto(String isbn, String title, String publicationHouse, String publicationYear, String genre, float price, String imageData, Long authorID) {
         this.isbn = isbn;
         this.title = title;
         this.publicationHouse = publicationHouse;

@@ -2,15 +2,18 @@ package mk.ukim.finki.uiktp.bookeshop.web;
 
 import lombok.RequiredArgsConstructor;
 import mk.ukim.finki.uiktp.bookeshop.mapper.BookMapper;
+import mk.ukim.finki.uiktp.bookeshop.model.Author;
 import mk.ukim.finki.uiktp.bookeshop.model.Book;
 import mk.ukim.finki.uiktp.bookeshop.model.dto.BookDto;
 import mk.ukim.finki.uiktp.bookeshop.model.enumeration.Genre;
+import mk.ukim.finki.uiktp.bookeshop.service.AuthorService;
 import mk.ukim.finki.uiktp.bookeshop.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/books")
 public class BookRestController {
+    private final AuthorService authorService;
     private final BookService bookService;
     private final BookMapper bookMapper;
 
@@ -39,6 +43,18 @@ public class BookRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/price")
+    @Transactional(readOnly = true)
+
+//    @PreAuthorize("isAuthenticated()")
+    public List<BookDto> findBooksByPriceRange(@RequestParam("minPrice") float minPrice,
+                                               @RequestParam("maxPrice") float maxPrice) {
+        List<Book> books = this.bookService.findBooksByPriceBetween(minPrice, maxPrice);
+        return books.stream()
+                .map(this.bookMapper::bookToBookDto)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/genre/{genre}")
     @Transactional(readOnly = true)
 
@@ -51,6 +67,8 @@ public class BookRestController {
     }
 
     @GetMapping("/author/{authorId}")
+    @Transactional(readOnly = true)
+
 //    @PreAuthorize("isAuthenticated()")
     public List<BookDto> findBooksByAuthor(@PathVariable Long authorId) {
         List<Book> books = this.bookService.findBooksByAuthor(authorId);
