@@ -17,9 +17,9 @@
 
         List<Book> findBooksByAuthor(Long authorId);
 
-        Optional<Book> create(BookDto bookDto);
+        Optional<Book> create(BookDto bookDto, Long authorId);
 
-        Optional<Book> update(String isbn,BookDto bookDto);
+        Optional<Book> update(String isbn, BookDto bookDto, Long authorId);
 
         void deleteBookByIsbn(String isbn);
 

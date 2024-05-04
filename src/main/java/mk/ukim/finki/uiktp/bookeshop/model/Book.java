@@ -1,14 +1,20 @@
 package mk.ukim.finki.uiktp.bookeshop.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import mk.ukim.finki.uiktp.bookeshop.model.enumeration.Genre;
 
 import java.util.List;
 import java.util.Set;
 
 @Data
+@Getter
+@Setter
 @Entity
+@Builder
 public class Book {
 
     @Id
@@ -22,16 +28,19 @@ public class Book {
 
     private String price;
 
-    private String imageData;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] imageData;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Author> authors;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public Book(){
 
     }
-    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price,String imageData, List<Author> authors) {
+    public Book(String isbn, String title, String publicationHouse, String publicationYear, Genre genre, String price,byte[] imageData, Author authors) {
         this.isbn = isbn;
         this.title = title;
         this.publicationHouse = publicationHouse;
@@ -39,7 +48,7 @@ public class Book {
         this.genre = genre;
         this.price = price;
         this.imageData = imageData;
-        this.authors = authors;
+        this.author = authors;
     }
 
 

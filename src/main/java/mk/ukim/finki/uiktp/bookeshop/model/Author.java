@@ -10,12 +10,14 @@ import lombok.Setter;
 
 
 @Data
+@Getter
+@Setter
 @Entity
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long author_id;
     private String name;
     private String surname;
     private String birthYear;
