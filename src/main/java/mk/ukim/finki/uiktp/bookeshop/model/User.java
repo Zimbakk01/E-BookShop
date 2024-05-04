@@ -31,6 +31,7 @@ public class User implements UserDetails {
     private String phoneNumber;
     @Enumerated(value = EnumType.STRING)
     private Role role;
+    private boolean isAdmin;
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -42,7 +43,13 @@ public class User implements UserDetails {
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 
     public User(String username, String name, String surname, String email, String address, String phoneNumber, Role role, String pass) {
         this.username = username;

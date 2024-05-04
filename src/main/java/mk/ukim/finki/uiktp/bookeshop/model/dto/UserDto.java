@@ -17,6 +17,7 @@ public class UserDto {
     private String address;
     private String phoneNumber;
     private Role role;
+    private boolean isAdmin;
 
     private String password;
 
@@ -24,7 +25,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String username, String name, String surname, String email, String address, String phoneNumber, Role role,String password) {
+    public UserDto(String username, String name, String surname, String email, String address, String phoneNumber,Role role,String password) {
         this.username = username;
         this.name = name;
         this.surname = surname;

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import mk.ukim.finki.uiktp.bookeshop.model.enumeration.Role;
 
+import java.util.Optional;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -18,6 +20,7 @@ public class RegisterRequest {
     private String address;
     private String phoneNumber;
     private String role;
+    private boolean isAdmin;
     private String password;
 
     public Role getRoleEnum() {

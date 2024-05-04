@@ -30,6 +30,7 @@ public class AuthenticationService {
                 .phoneNumber(request.getPhoneNumber())
                 .password(encoded)
                 .role(Role.ROLE_USER)
+                .isAdmin(request.isAdmin())
                 .isEnabled(true)
                 .isAccountNonExpired(true)
                 .isAccountNonLocked(true)
