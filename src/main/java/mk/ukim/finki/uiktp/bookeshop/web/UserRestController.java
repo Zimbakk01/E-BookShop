@@ -26,19 +26,20 @@ public class UserRestController {
     }
 
     @GetMapping("/{username}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<User> findByUsername(@PathVariable String username) {
         return this.userService.findByUsername(username)
                 .map(user -> ResponseEntity.ok().body(user))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/add")
-//    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> create(@RequestBody UserDto userDto) {
-        return this.userService.create(userDto)
-                .map(user -> ResponseEntity.ok().body(user))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
-    }
+//    @PostMapping("/add")
+////    @PreAuthorize("hasRole('ADMIN')")
+//    public ResponseEntity<User> create(@RequestBody UserDto userDto) {
+//        return this.userService.create(userDto)
+//                .map(user -> ResponseEntity.ok().body(user))
+//                .orElseGet(() -> ResponseEntity.badRequest().build());
+//    }
 
     @PutMapping("/edit/{username}")
 //    @PreAuthorize("hasRole('ADMIN')")
@@ -50,7 +51,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/delete/{username}")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity delete(@PathVariable String username) {
         this.userService.delete(username);
         if (this.userService.findByUsername(username).isEmpty())

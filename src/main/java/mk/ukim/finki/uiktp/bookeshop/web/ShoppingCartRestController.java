@@ -22,13 +22,13 @@ public class ShoppingCartRestController {
     }
 
     @GetMapping
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<ShoppingCart> findAll() {
         return this.shoppingCartService.findAll();
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public  ResponseEntity<ShoppingCart> findById(@PathVariable Long id) {
         return this.shoppingCartService.findById(id)
                 .map(shoppingCart -> ResponseEntity.ok().body(shoppingCart))
@@ -36,7 +36,7 @@ public class ShoppingCartRestController {
     }
 
     @PostMapping("/add-book")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ShoppingCart> addBookToCart(@RequestParam String username,
                                                       @RequestParam String bookIsbn,
                                                       @RequestParam int quantity) {
@@ -49,7 +49,7 @@ public class ShoppingCartRestController {
     }
 
     @DeleteMapping("/remove-book")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ShoppingCart> removeBookFromCart(@RequestParam String username,
                                                            @RequestParam String bookIsbn) {
         try {
@@ -61,7 +61,7 @@ public class ShoppingCartRestController {
     }
 
     @PutMapping("/update-quantity")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ShoppingCart> updateBookQuantity(@RequestParam String username,
                                                            @RequestParam String bookIsbn,
                                                            @RequestParam int quantity) {
@@ -74,7 +74,7 @@ public class ShoppingCartRestController {
     }
 
     @DeleteMapping("/clear-cart/{username}")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity clearCart(@PathVariable String username) {
         try {
             this.shoppingCartService.clearCart(username);
@@ -85,7 +85,7 @@ public class ShoppingCartRestController {
     }
 
     @GetMapping("/contents")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<Book> getCartContents(@RequestParam String username) {
         return this.shoppingCartService.getCartContents(username);
     }

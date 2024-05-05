@@ -17,7 +17,6 @@ public class UserDto {
     private String address;
     private String phoneNumber;
     private Role role;
-    private boolean isAdmin;
 
     private String password;
 

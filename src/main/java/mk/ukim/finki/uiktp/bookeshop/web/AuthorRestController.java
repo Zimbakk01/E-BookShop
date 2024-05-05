@@ -20,13 +20,13 @@ public class AuthorRestController {
     }
 
     @GetMapping
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<Author> findAll() {
         return this.authorService.findAll();
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Author> findById(@PathVariable Long id) {
         return this.authorService.findById(id)
                 .map(author -> ResponseEntity.ok().body(author))
@@ -34,7 +34,7 @@ public class AuthorRestController {
     }
 
     @PostMapping("/add")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Author> create(@RequestBody AuthorDto authorDto) {
         return this.authorService.create(authorDto)
                 .map(author -> ResponseEntity.ok().body(author))
@@ -42,7 +42,7 @@ public class AuthorRestController {
     }
 
     @PutMapping("/edit/{id}")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Author> update(@PathVariable Long id,
                                          @RequestBody AuthorDto authorDto) {
         return this.authorService.update(id, authorDto)
@@ -51,7 +51,7 @@ public class AuthorRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity deleteById(@PathVariable Long id) {
         this.authorService.delete(id);
         if (this.authorService.findById(id).isEmpty())

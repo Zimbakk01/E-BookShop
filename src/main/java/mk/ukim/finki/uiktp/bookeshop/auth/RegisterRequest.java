@@ -20,7 +20,6 @@ public class RegisterRequest {
     private String address;
     private String phoneNumber;
     private String role;
-    private boolean isAdmin;
     private String password;
 
     public Role getRoleEnum() {

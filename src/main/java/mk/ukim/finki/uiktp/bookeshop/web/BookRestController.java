@@ -36,7 +36,7 @@ public class BookRestController {
     }
 
     @GetMapping("/isbn/{isbn}")
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<BookDto> findBookByISBN(@PathVariable String isbn) {
         return this.bookService.findBookByISBN(isbn)
                 .map(book -> ResponseEntity.ok().body(this.bookMapper.bookToBookDto(book)))
@@ -46,7 +46,7 @@ public class BookRestController {
     @GetMapping("/price")
     @Transactional(readOnly = true)
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<BookDto> findBooksByPriceRange(@RequestParam("minPrice") float minPrice,
                                                @RequestParam("maxPrice") float maxPrice) {
         List<Book> books = this.bookService.findBooksByPriceBetween(minPrice, maxPrice);
@@ -58,7 +58,7 @@ public class BookRestController {
     @GetMapping("/genre/{genre}")
     @Transactional(readOnly = true)
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<BookDto> findBooksByGenre(@PathVariable Genre genre) {
         List<Book> books = this.bookService.findBooksByGenre(genre);
         return books.stream()
@@ -69,7 +69,7 @@ public class BookRestController {
     @GetMapping("/author/{authorId}")
     @Transactional(readOnly = true)
 
-//    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     public List<BookDto> findBooksByAuthor(@PathVariable Long authorId) {
         List<Book> books = this.bookService.findBooksByAuthor(authorId);
         return books.stream()
